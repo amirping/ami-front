@@ -1,0 +1,90 @@
+
+
+  <section class="signup">
+    <div class="container">
+        <div class="signup-content">
+            <div class="signup-form">
+                <h2 class="form-title">Update Profile</h2>
+                <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" novalidate #f=ngForm class="register-form" id="register-form">
+                 
+                  <div class="row">
+                    <div class="form-group col-md-6">
+                      <input type="radio" name="agree-term" id="role" [(ngModel)]="user.role" [checked]="test==true" (change)="onItemChange($event.target.value)" value="particulier" class="agree-term" />
+                      <label for="agree-term" class="label-agree-term">Particulier</label>
+                  </div>
+                    <div class="form-group col-md-6">
+                      <input type="radio" name="agree-term" id="role" [(ngModel)]="user.role" [checked]="test==false" (change)="onItemChange($event.target.value)" value="entreprise" class="agree-term" />
+                      <label for="agree-term" class="label-agree-term">Entreprise</label>
+                  </div>
+                </div>
+                <div class="form-group" *ngIf="inscri==false">
+                  <label for="numid"><i class="zmdi zmdi-lock-outline material-icons">lock</i></label>
+                  <input type="number" name="numid" id="numid"[(ngModel)]="user.numid" placeholder="CIN ou Passeport ou Carte de séjour "/>
+              </div>
+              <div class="form-group" *ngIf="inscri==true">
+                <label for="numid"><i class="zmdi zmdi-lock-outline material-icons">lock</i></label>
+                <input type="number" name="numid" id="numid"[(ngModel)]="user.numid" placeholder="Matricule Fiscale ou Registre du commerce"/>
+            </div>
+              <div class="form-group">
+                <label for="name"><i class="zmdi zmdi-account material-icons">person</i></label>
+                <input  type="text" name="username" [(ngModel)]="user.username" required #username="ngModel" id="name" placeholder="Your Name"/>
+            </div>
+                  <div class="row">
+                  <div class="form-group col-md-6">
+                    <!-- <label for="firstname"><i class="zmdi zmdi-account material-icons">person</i></label> -->
+                      <input type="text" name="firstname" [(ngModel)]="user.firstname" required #firstname id="firstname" placeholder="First Name"/>
+                  </div> 
+                  <div class="form-group col-md-6">
+                    <!-- <label for="lastname"><i class="zmdi zmdi-account material-icons">person</i></label> -->
+                      <input type="text" name="lastname" [(ngModel)]="user.lastname" required #firstname id="lastname" placeholder="Last Name"/>
+                  </div> 
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <!-- <label for="numtel"><i class="zmdi zmdi-account material-icons">person</i></label> -->
+                      <input type="tel" name="numtel" [(ngModel)]="user.numtel" required #firstname id="numtel" placeholder="phone Number"/>
+                  </div> 
+                  
+                  
+                
+                    <div class="form-group col-md-6">
+                        <!-- <label for="email"><i class="zmdi zmdi-email material-icons">email</i></label> -->
+                        <input type="email" name="email" [(ngModel)]="user.email" required email #email="ngModel"  id="email" placeholder="Your Email"/>
+                    </div>
+                  </div>
+                    <div class="form-group">
+                        <label for="pass"><i class="zmdi zmdi-lock material-icons">lock</i></label>
+                        <input type="password" name="password" [(ngModel)]="user.password" required #password="ngModel" id="pass" placeholder="Password"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="re-pass"><i class="zmdi zmdi-lock-outline material-icons">lock</i></label>
+                        <input type="password" name="re_pass" id="re_pass" placeholder="Repeat your password"/>
+                    </div>
+              
+                    
+
+              
+                  <div class="form-group">
+                    <label for="re_pass"><i class="zmdi zmdi-lock-outline material-icons">lock</i></label>
+                    <input type="file" name="re_pass" id="re_pass"  [(ngModel)]="user.img" placeholder="Image"/>
+                </div>
+                    <div class="form-group">
+                        <input type="checkbox" name="agree-term" id="agree-term" class="agree-term" />
+                        <label for="agree-term" class="label-agree-term"><span><span></span></span>I agree all statements in  <a href="#" class="term-service">Terms of service</a></label>
+                    </div>
+                    <div class="form-group form-button">
+                        <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
+                    </div>
+                    
+                </form>
+                <div class="alert alert-success" *ngIf="isSuccessful">
+                  Your registration is successful!
+                </div>
+            </div>
+            <div class="signup-image">
+                <figure ><img src="https://colorlib.com/etc/regform/colorlib-regform-7/images/signup-image.jpg" alt="sing up image"></figure>
+                <a routerLink="/login" class="signup-image-link">I am already member</a>
+            </div>
+        </div>
+    </div>
+</section>

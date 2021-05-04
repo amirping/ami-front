@@ -1,0 +1,61 @@
+<div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
+    <div class="wrapper wrapper--w680">
+        <div class="card card-1">
+            <div class="card-heading"></div>
+            <div class="card-body">
+                <h2 class="title">Ajouter Actualité</h2>
+                <form enctype="multipart/form-data" (ngSubmit)="onSubmit()" #f="ngForm" >
+               
+                    <div class="row row-space">
+                        
+                        <div class="col-6">
+                            <div class="input-group">
+                                <label style="font-size: 15px;font-family: Poppins;">Numéro pièce d'identité</label>
+                                <input class="input--style-1" type="text" [(ngModel)]="actualite.title" #title="ngModel" name="num-id">
+                                <p>{{actualite.title}}</p>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label style="font-size: 15px;font-family: Poppins;">Identifiant</label>
+                        <input class="input--style-1" type="text" [(ngModel)]="actualite.description" #description="ngModel" name="Identifiant">
+                    </div>
+                    <div class="row row-space">
+                        <div class="col-5">
+                            <div id="captcha" class="input-group">
+                                
+                                <input style="width: 500px;" class="input--style-1" (change)="onFileSelected($event)" accept=".jpg,.jpeg,.png" [(ngModel)]="actualite.img" #img="ngModel" type="file" placeholder=" SAISIR LE CODE SUIVANT" name="img">
+                               
+                            </div>
+
+                        </div>
+                    </div>
+               
+                    
+                    <div class="p-t-20">
+                        <button class="btn btn--radius btn--blue" (click)="openModal(template)" type="submit">Ajouter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template id="test" #template>
+    
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Add more</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      Are you sure !!
+    </div>
+    <div class="modal-action">
+      <button mat-button (click)="closeModal(template)" color="warn">Yes</button>
+      <button mat-button routerLink="/home" (click)="closeModal(template)"> No</button>
+    </div>
+
+  </ng-template>
+

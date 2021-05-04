@@ -1,0 +1,77 @@
+<div class="container" >
+<mat-horizontal-stepper linear #stepper style="margin-top: 50px;box-shadow: 0px 5px 10px 0px rgb(201, 197, 197) ;height: 100%;">
+  <form (ngSubmit)="onSubmit()" [formGroup]="firstFormGroup" #f="ngForm">  
+  <mat-step [stepControl]="firstFormGroup" errorMessage="Vérifier votre réclamation">
+      <!-- <form (ngSubmit)="onSubmit()" [formGroup]="firstFormGroup"> -->
+        <ng-template matStepLabel>Réclamation</ng-template>
+        <mat-form-field style="width: 300px;">
+            <mat-label>Votre réclamation concerne ?</mat-label>
+            <mat-select [(ngModel)]="reclamation.categorie"  matNativeControl required formControlName="categorie">
+              <mat-option *ngFor="let i of categories" [value]="i._id">{{i.name}}</mat-option>
+       
+            </mat-select>
+          </mat-form-field><br>
+        <mat-form-field>
+        <mat-label>Titre</mat-label>
+        <input matInput [(ngModel)]="reclamation.title"  placeholder="Ex. 1 Main St, New York, NY" formControlName="titre"
+                 required>
+        </mat-form-field><br>
+        <mat-form-field style="width:500px;" class="example-full-width">
+            <mat-label>Description</mat-label>
+            <textarea [(ngModel)]="reclamation.description" required matInput formControlName="description" placeholder="Ex. It makes me feel..."></textarea>
+        </mat-form-field>
+        <div>
+          <!-- <p>Go to a different step to see the error state</p> -->
+          <button mat-button matStepperNext  [disabled]="firstFormGroup.invalid">Next</button>
+        </div>
+      <!-- </form> -->
+    </mat-step>
+    <mat-step [optional]="isOptional">
+      <!-- <form > -->
+        <ng-template matStepLabel>Confirmation</ng-template>
+        <!-- <mat-form-field>
+          <mat-label>Address</mat-label>
+          <input readonly matInput placeholder="Ex. 1 Main St, New York, NY" [value]="titre" formControlName="secondCtrl">
+        </mat-form-field> -->
+        <div>
+        <mat-form-field>
+          <mat-label>Titre</mat-label>
+          <input readonly matInput placeholder="Ex. 1 main St, New York, NY" [value]="reclamation.title">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Catégorie</mat-label>
+          <input readonly matInput placeholder="Ex. 1 main St, New York, NY" [value]="reclamation.categorie">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-label>Description</mat-label>
+          <input readonly matInput placeholder="Ex. 1 main St, New York, NY" [value]="reclamation.description">
+
+        </mat-form-field>
+      </div>
+        <div>
+          <p>Confirmé votre réclamation</p>
+          <!-- <p>Go to a different step to see the error state</p> -->
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext >Next</button>
+        </div>
+      <!-- </form> -->
+      
+    </mat-step>
+  </form>
+  <form>
+    <mat-step>
+      <ng-template matStepLabel >Terminé</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <!-- <button mat-button matStepperPrevious>Back</button> -->
+        <button mat-button (click)="stepper.reset()">Reset</button>
+        <button mat-button (click)="onSubmit()">Envoyer</button>
+      </div>
+    </mat-step>
+  </form>
+  </mat-horizontal-stepper>
+</div>

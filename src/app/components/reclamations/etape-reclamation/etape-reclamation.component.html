@@ -1,0 +1,23 @@
+<form>
+<h1 mat-dialog-title>Hi </h1>
+<div mat-dialog-content>
+  <p>Changement d'état?</p>
+  
+  <mat-form-field appearance="fill">
+    <mat-label>Etat</mat-label>
+    
+    <mat-select [(value)]="selectedName" (change)="onChange($event.value)" name="name">
+      <mat-option value="onHold">
+         onHold
+      </mat-option>
+      <mat-option value="active">
+        Active
+     </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button >No Thanks</button>
+  <button mat-button (click)="onSubmit()" [mat-dialog-close] cdkFocusInitial>Ok</button>
+</div>
+</form>

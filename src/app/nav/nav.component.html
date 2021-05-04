@@ -1,0 +1,87 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar><img src="http://www.assurancesami.com/sites/default/files/logo-ami-assurance.png"></mat-toolbar>
+    <mat-nav-list>
+
+
+      
+    <a mat-list-item type="button" [routerLink]="['/home']"><i class="material-icons">home</i>Accueil</a>
+    
+      <a mat-list-item type="button" [routerLink]="['/dashboard']"><i class="material-icons">dashboard</i>Dashboard</a>
+      
+      <a mat-list-item type="button" [routerLink]="['/profile']"><i class="material-icons">person</i>Profil</a>
+      
+      <a mat-list-item type="button"  [routerLink]="['/admin']"><i class="material-icons">task</i>Tasks</a>
+      
+      <a mat-list-item ><i class="material-icons">feed</i>Actualité<mat-select>
+        <mat-option *ngIf="check==true"><a mat-list-item style="font-size: 12px;margin: 40px;" [routerLink]="['/addactualite']">Ajouter</a></mat-option>
+        <mat-option><a  mat-list-item style="font-size: 12px;margin: 40px;" [routerLink]="['/home']">List</a></mat-option>
+      </mat-select></a>
+      <div *ngIf="check==true">
+      <a mat-list-item type="button" ><i class="material-icons">manage_accounts</i>
+        Accounts
+        <mat-select>
+          <mat-option><a mat-list-item style="font-size: 12px;margin: 40px;" [routerLink]="['/users']">Users List</a></mat-option>
+          <mat-option><a mat-list-item style="font-size: 12px;margin: 40px;" [routerLink]="['/register']">Ajouter User</a></mat-option>
+
+        </mat-select>
+      </a>
+    </div>
+    <a mat-list-item type="button" ><i class="material-icons">support_agent</i>Réclamation
+    <mat-select>
+      <mat-option>
+        <a mat-list-item style="font-size:12px;margin:40px;" [routerLink]="['/consultreclamation']">Mes réclamations</a>
+      </mat-option>
+    </mat-select>
+    </a>
+
+      <a mat-list-item type="button"  [routerLink]="['/register']"><i class="material-icons">feed</i>Admin</a>
+      <a mat-list-item type="button" (click)="logout()"><i class="material-icons">logout</i>Logout</a>
+
+      
+    
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon"><span>menu</span></mat-icon>
+      </button>
+      <div style="position: absolute;right: 0px;font-size: 15px;">
+       
+        <span style="padding-right: 10px; font-weight: lighter;">{{user.username}}</span>
+      <button mat-button [matMenuTriggerFor]="menu"><img class="avatar" [src]="user.img"></button>
+      <mat-menu #menu="matMenu">
+        <button [routerLink]="['/profile']" style="color: #334D6E;font-size: smaller;" mat-menu-item>
+          <i class="material-icons">person</i>Profile
+        </button>
+        
+        <button (click)="logout()" style="color: #334D6E;font-size: smaller;" mat-menu-item>
+          <i  class="material-icons">logout</i>Logout
+        </button>
+      </mat-menu>
+      
+    </div>
+    <p>
+      
+     <button (click)="Testing()"  mat-button [matMenuTriggerFor]="menu2"><mat-icon style="margin-top: 15px;" [matBadge]="not" matBadgeColor="warn">circle_notifications</mat-icon>
+        
+      </button>
+      <mat-menu #menu2="matMenu" style="width: 300px;">
+        <p class="m"  mat-menu-item *ngFor="let i of List"><button mat-button (click)="detail(i.reclamation)"><img class="avatar" [src]="i.img" ><mat-label>{{i.username}}</mat-label></button></p>
+      </mat-menu>
+    </p>
+    
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,41 @@
+   <div class="grid-container row" >
+  
+    <mat-grid-list *ngFor="let i of list" cols="{{(cardLayout | async)?.columns}}" >
+    <mat-card class="example-card" [colspan]="( cardLayout | async )?.chart.cols"
+    [rowspan]="( cardLayout | async )?.chart.rows"  >
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{i.title}}</mat-card-title>
+      <mat-card-subtitle>{{i.createdAt | date : 'yyyy-MM-dd HH:mm:ss'}} </mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="i.img" alt="Photo of a Shiba Inu">
+    <mat-card-content>
+      <p style="word-wrap: break-word;">
+        {{i.description}}
+      </p>
+    </mat-card-content>
+    <ng-container *ngIf="check===true">
+    <mat-card-actions>
+      <button (click)="consult(i._id)" mat-button>Update</button>
+      <button (click)="openModal(template)" mat-button>Delete</button>
+     
+    </mat-card-actions>
+  </ng-container>
+  </mat-card> 
+  <ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Delete {{i.title}}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      Are you sure !!
+    </div>
+    <div class="modal-action">
+      <button mat-button (click)="delete(i._id)" color="warn">Delete</button>
+      <button mat-button (click)="closeModal(template)"> cancel</button>
+    </div>
+  </ng-template>
+</mat-grid-list>
+</div>

@@ -1,0 +1,79 @@
+
+    <mat-card>
+        
+        <h3>Reclamation : {{reclamation.ticket.code}}</h3>
+        <h3 style="float:right;"><ng-container *ngIf="etape.name=='onHold'"><mat-chip-list><mat-chip (click)="openEtapeDialog()">{{etape.name}}</mat-chip></mat-chip-list></ng-container>
+            <ng-container *ngIf="etape.name=='active'"><mat-chip-list><mat-chip (click)="openEtapeDialog()" color="primary" selected>{{etape.name}}</mat-chip></mat-chip-list></ng-container>
+            <ng-container *ngIf="etape.name=='paused'"><mat-chip-list><mat-chip (click)="openDialog()" color="warn" selected>{{etape.name}}</mat-chip></mat-chip-list></ng-container>
+            <ng-container *ngIf="etape.name=='completed'"><mat-chip-list><mat-chip (click)="openDialog()" class="buttonSuccess">{{etape.name}}</mat-chip></mat-chip-list></ng-container>
+      
+        </h3>
+        
+        <div class="example-action-buttons">
+            <button mat-button (click)="accordion.openAll()">Elargir</button>
+            <button mat-button (click)="accordion.closeAll()">Réduire</button>
+          </div>
+          <mat-accordion class="example-headers-align" multi>
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Information Générale
+                </mat-panel-title>
+                <mat-panel-description>
+                  Titre et Catégorie de la réclamation 
+                  <mat-icon>account_circle</mat-icon>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+          
+              <mat-form-field>
+                <mat-label>Titre</mat-label>
+                <input matInput readonly [value]="reclamation.title">
+              </mat-form-field>
+          
+              <mat-form-field>
+                <mat-label>Catégorie</mat-label>
+                <input matInput readonly [value]="reclamation.categorie.name">
+              </mat-form-field>
+          
+            </mat-expansion-panel>
+            <mat-expansion-panel >
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Description
+                </mat-panel-title>
+                <mat-panel-description>
+                  Description de la réclamation
+                  <mat-icon>description</mat-icon>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+          
+              <mat-form-field style="width:500px">
+                <mat-label>description</mat-label>
+                <textarea matInput readonly [value]="reclamation.description"></textarea>
+              </mat-form-field>
+            </mat-expansion-panel>
+          
+            <mat-expansion-panel>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  Les Dates
+                </mat-panel-title>
+                <mat-panel-description>
+                    Date de création et date de mise à jour
+                  <mat-icon>date_range</mat-icon>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+          
+              <mat-form-field>
+                <mat-label>Date de création </mat-label>
+                <input matInput [matDatepicker]="picker" [value]="reclamation.ticket.createdAt"  (focus)="picker.open()"  [readonly]=true>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Date de mise à jour </mat-label>
+                <input matInput [matDatepicker]="picker" [value]="reclamation.ticket.updatedAt"  (focus)="picker.open()"  [readonly]=true>
+              </mat-form-field>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-expansion-panel>
+          </mat-accordion>
+          </mat-card>
+       

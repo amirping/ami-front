@@ -1,0 +1,49 @@
+<div class="grid-container row" >
+
+   
+  <mat-grid-list *ngFor="let i of list" cols="{{(cardLayout | async)?.columns}}" >
+  <mat-card *ngIf="test(i._id)==false" class="example-card" [colspan]="( cardLayout | async )?.chart.cols"
+  [rowspan]="( cardLayout | async )?.chart.rows"  >
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{i.title}}</mat-card-title>
+    <mat-card-subtitle>{{i.createdAt | date : 'yyyy-MM-dd HH:mm:ss'}} </mat-card-subtitle>
+  </mat-card-header>
+  
+  <mat-card-content>
+    <p>
+      {{i.username}}<br>
+      <span *ngIf="i.status=='Active';else elseBlock">Account Active <i class="material-icons" style="color: green;">gpp_good</i></span>
+      <ng-template #elseBlock>Pending <i class="material-icons" style="color: yellow;">gpp_bad</i></ng-template>
+    </p>
+  </mat-card-content>
+  <ng-container>
+  <mat-card-actions>
+    <button  mat-stroked-button (click)="consult(i._id)" style="color: #334D6E;">Profile<i class="material-icons">pageview</i></button>
+    <button  mat-button color="warn" (click)="openModal(template)">Delete<i class="material-icons">delete_outline</i></button>
+   
+  </mat-card-actions>
+</ng-container>
+</mat-card> 
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Delete {{i.title}}</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    Are you sure !!
+  </div>
+  <div class="modal-action">
+    <button mat-button (click)="deleteUser(i._id)" color="warn">Delete</button>
+    <button mat-button (click)="closeModal(template)"> cancel</button>
+  </div>
+</ng-template>
+</mat-grid-list>
+
+
+<pagination [totalItems]="list.length" (pageChanged)="pageChangedEvent($event)"></pagination>
+</div>
+
+
