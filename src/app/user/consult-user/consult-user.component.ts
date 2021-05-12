@@ -30,7 +30,7 @@ export class ConsultUserComponent implements OnInit {
   RolesCheck(){
     //role_admin
     // console.log(this.tokenStorageService.getUser().roles);
-    if(this.token.getUser().roles[0]=="ROLE_ADMIN"){
+    if(this.token.getUser().roles.includes("ROLE_ADMIN")){
       this.check=true;
       console.log(this.check);
       return this.check;

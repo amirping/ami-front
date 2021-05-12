@@ -49,7 +49,7 @@ export class NavComponent {
       this.userService.getUserById(this.data.user).subscribe(data=>{
         this.user2=data;
         console.log(this.user2);
-        if(this.user2._id!=this.data.user || this.tokenStorageService.getUser().roles=="ROLE_ADMIN"){
+        if(this.user2._id!=this.data.user || this.tokenStorageService.getUser().roles.includes("ROLE_ADMIN")){
           this.not++;
           // this.List.push(data);
           this.notification=new Notification(this.data._id,this.user2._id,this.user2.username,this.user2.img,this.data.reclamation,this.data.code,this.data.updatedAt,this.data.etape,this.data.updatedAt);
@@ -71,7 +71,7 @@ export class NavComponent {
     
   }
   rolesCheck(){
-    if(this.tokenStorageService.getUser().roles=="ROLE_ADMIN"){
+    if(this.tokenStorageService.getUser().roles.includes("ROLE_ADMIN")){
       this.check=true;
       return this.check;
       

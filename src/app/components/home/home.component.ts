@@ -126,7 +126,7 @@ export class HomeComponent implements OnInit {
   RolesCheck(){
     //role_admin
     // console.log(this.tokenStorageService.getUser().roles);
-    if(this.tokenStorageService.getUser().roles[0]=="ROLE_ADMIN"){
+    if(this.tokenStorageService.getUser().roles.includes("ROLE_ADMIN")){
       this.check=true;
       return this.check;
       
