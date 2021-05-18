@@ -2,36 +2,39 @@ import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs';
 import { ActualiteService } from 'src/app/services/actualite.service';
 import {FormBuilder,FormGroup,Validators} from '@angular/forms';
-import {Actualite} from './../../../models/actualite';
+import {Actualite} from '../../../models/actualite';
 import { Router } from '@angular/router';
 import {BsModalRef,BsModalService} from 'ngx-bootstrap/modal';
 import { TemplateRef } from '@angular/core';
 import {io} from 'socket.io-client/build/index';
+import { Declaration } from 'src/app/models/declarations';
+import { DeclarationService } from 'src/app/services/declaration.service';
 
 @Component({
-  selector: 'app-add-actualite',
-  templateUrl: './add-actualite.component.html',
-  styleUrls: ['./add-actualite.component.css']
+  selector: 'app-add-declaration',
+  templateUrl: './add-declaration.component.html',
+  styleUrls: ['./add-declaration.component.css']
 })
-export class AddActualiteComponent implements OnInit {
-  actualite:Actualite=new Actualite();
+export class AddDeclarationComponent implements OnInit {
+  declaration:Declaration=new Declaration();
   img:string;
   title:any;
   addActualite:FormGroup;
   submitted:boolean=false;
   modalRef:BsModalRef;
-  Actualite=new Actualite();
  
-  constructor(private modalService:BsModalService,private router:Router,private actualiteService:ActualiteService) { 
+  constructor(private modalService:BsModalService,private router:Router,private declarationService:DeclarationService) { 
 
   }
 
   ngOnInit(): void {
+    console.log("hedi bhim");
+ 
   }
 
   newActualite():void {
     this.submitted=false;
-    this.actualite=new Actualite();
+    this.declaration=new Declaration();
   }
 
 
@@ -43,20 +46,20 @@ onFileSelected(event){
  console.log( reader.readAsDataURL(file));
   reader.onload=(e)=>{
     this.img=reader.result.toString();
-    this.actualite.img=this.img
+    this.declaration.img=this.img
   }
   // console.log(event.target.files[0].path);
 }
 
 
 save(){
-  this.actualiteService.addActualite(this.actualite).subscribe(
+  this.declarationService.addDeclaration(this.declaration).subscribe(
     data=>{
       console.log(data);
     },
     error=>console.log(error)
   );
-  this.actualite=new Actualite();
+  this.declaration=new Declaration();
   
 }
 

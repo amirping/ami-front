@@ -61,6 +61,8 @@ import { ReclamationListComponent } from './components/reclamations/reclamation-
 import { DetailReclamationComponent } from './components/reclamations/detail-reclamation/detail-reclamation.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { ErrorComponent } from './components/error/error.component';
+import { AddDeclarationComponent } from './components/declaration/add-declaration/add-declaration.component';
+import { ListDeclarationComponent } from './components/declaration/list-declaration/list-declaration.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -80,6 +82,7 @@ import { ErrorComponent } from './components/error/error.component';
     CardComponent,
     UsersTableComponent,
     AddActualiteComponent,
+    AddDeclarationComponent,
     SnackBarLoginComponent,
     UpdateActualiteComponent,
     UpdateUserComponent,
@@ -89,7 +92,7 @@ import { ErrorComponent } from './components/error/error.component';
     DetailReclamationComponent,
     LoaderComponent,
     ErrorComponent,
-    
+    ListDeclarationComponent
     
   ],
   imports: [

@@ -19,6 +19,8 @@ import {ErrorComponent} from './components/error/error.component';
 import {AdminGuard} from './guards/admin.guard';
 import {UsersTableComponent} from '../app/user/users-table/users-table.component';
 import {ReclamationComponent} from '../app/components/reclamation/reclamation.component';
+import { AddDeclarationComponent } from './components/declaration/add-declaration/add-declaration.component';
+import { ListDeclarationComponent } from './components/declaration/list-declaration/list-declaration.component';
 const routes: Routes = [{path:'home',component:HomeComponent},
 {path:'dashboard',component:DashComponent},
 {path:'404',component:ErrorComponent},
@@ -34,6 +36,8 @@ const routes: Routes = [{path:'home',component:HomeComponent},
 {path:'updateactualite/:id',component:UpdateActualiteComponent},
 {path:'updateactualite',component:UpdateActualiteComponent},
 {path:'addactualite',component:AddActualiteComponent,canActivate:[AdminGuard]},
+{path:'adddeclar',component:AddDeclarationComponent},
+{path:'listdeclar',component:ListDeclarationComponent},
 {path:'consultreclamation',component:ReclamationListComponent},
 {path:'register',component:RegisterComponent},
 {path:'profile',component:ProfileComponent},

@@ -10,30 +10,13 @@ export interface UsersTableItem {
   id: number;
 }
 
-// TODO: replace this with real data from your application
-const EXAMPLE_DATA: UsersTableItem[] = [
-  {id: 1, name: 'Hydrogen'},
-  {id: 2, name: 'Helium'},
-  {id: 3, name: 'Lithium'},
-  {id: 4, name: 'Beryllium'},
-  {id: 5, name: 'Boron'},
-  {id: 6, name: 'Carbon'},
-  {id: 7, name: 'Nitrogen'},
-  {id: 8, name: 'Oxygen'},
-  {id: 9, name: 'Fluorine'},
-  {id: 10, name: 'Neon'},
-  {id: 11, name: 'Sodium'},
-
-
-];
-
 /**
  * Data source for the UsersTable view. This class should
  * encapsulate all logic for fetching and manipulating the displayed data
  * (including sorting, pagination, and filtering).
  */
 export class UsersTableDataSource extends DataSource<UsersTableItem> {
-  data: UsersTableItem[] = EXAMPLE_DATA;
+  data: UsersTableItem[] = [];
   paginator: MatPaginator;
   sort: MatSort;
 

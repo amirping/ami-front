@@ -16,17 +16,26 @@
       
       <a mat-list-item type="button"  [routerLink]="['/admin']"><i class="material-icons">task</i>Tasks</a>
       
-      <a mat-list-item ><i class="material-icons">feed</i>Actualité<mat-select>
-        <mat-option *ngIf="check==true"><a mat-list-item style="font-size: 12px;margin: 40px;" [routerLink]="['/addactualite']">Ajouter</a></mat-option>
-        <mat-option><a  mat-list-item style="font-size: 12px;margin: 40px;" [routerLink]="['/home']">List</a></mat-option>
-      </mat-select></a>
+      <a mat-list-item ><i class="material-icons">feed</i>Actualité
+        <mat-select>
+          <mat-option *ngIf="check==true"><a mat-list-item style="font-size: 12px;margin: 40px;" [routerLink]="['/addactualite']">Ajouter</a></mat-option>
+          <mat-option><a  mat-list-item style="font-size: 12px;margin: 40px;" [routerLink]="['/home']">List</a></mat-option>
+        </mat-select>
+      </a>
+      
+      <a mat-list-item ><i class="material-icons">source</i>Declarations
+        <mat-select>
+          <mat-option *ngIf="check==true"><a mat-list-item style="font-size: 12px;margin: 40px;" [routerLink]="['/adddeclar']">Ajouter</a></mat-option>
+          <mat-option><a  mat-list-item style="font-size: 12px;margin: 40px;" [routerLink]="['/listdeclar']">List</a></mat-option>
+        </mat-select>
+      </a>
+      
       <div *ngIf="check==true">
       <a mat-list-item type="button" ><i class="material-icons">manage_accounts</i>
         Accounts
         <mat-select>
           <mat-option><a mat-list-item style="font-size: 12px;margin: 40px;" [routerLink]="['/users']">Users List</a></mat-option>
           <mat-option><a mat-list-item style="font-size: 12px;margin: 40px;" [routerLink]="['/register']">Ajouter User</a></mat-option>
-
         </mat-select>
       </a>
     </div>

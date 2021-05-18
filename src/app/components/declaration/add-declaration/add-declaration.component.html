@@ -1,0 +1,78 @@
+<div class="page-wrapper bg-blue p-t-100 p-b-100 font-robo">
+    <div class="wrapper wrapper--w680">
+        <div class="card card-1">
+            <div class="card-heading"></div>
+            <div class="card-body">
+                <h2 class="title">Ajouter Declaration</h2>
+                <form enctype="multipart/form-data" (ngSubmit)="onSubmit()" #f="ngForm" >
+                    <div class="row row-space">
+                        <div class="col-6">
+                            <div class="input-group">
+                                <label style="font-size: 15px;font-family: Poppins;">Titre</label>
+                                <input class="input--style-1" type="text" [(ngModel)]="declaration.title" #title="ngModel" name="num-id">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-space">
+                        <div class="col-6">
+                            <div class="input-group">
+                                <label style="font-size: 15px;font-family: Poppins;">Date</label>
+                                <input class="input--style-1" type="date" [(ngModel)]="declaration.date" #title="ngModel" name="num-id">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row row-space">
+                        <div class="col-6">
+                            <div class="input-group">
+                                <label style="font-size: 15px;font-family: Poppins;">Lieu</label>
+                                <input class="input--style-1" type="text" [(ngModel)]="declaration.location" #title="ngModel" name="num-id">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Description</mat-label>
+                            <textarea matInput matInput [(ngModel)]="declaration.description" #description="ngModel" name="Description" placeholder="Ex. It makes me feel..."></textarea>
+                        </mat-form-field>
+                    </div>
+                    <!-- <div class="input-group">
+                        <label style="font-size: 15px;font-family: Poppins;">Description</label> -->
+                        <!-- <input class="input--style-1" type="text" [(ngModel)]="declaration.description" #description="ngModel" name="Identifiant"> -->
+                        <!-- <textarea matInput [(ngModel)]="declaration.description" #description="ngModel" name="Identifiant" cols="30" rows="10"></textarea>
+                    </div> -->
+                    <div class="row row-space">
+                        <div class="col-5">
+                            <div id="captcha" class="input-group">
+                                <label style="font-size: 15px;font-family: Poppins;">Constat</label>
+                                <input style="width: 500px;" class="input--style-1" (change)="onFileSelected($event)" accept=".jpg,.jpeg,.png" [(ngModel)]="declaration.img" #img="ngModel" type="file" placeholder=" SAISIR LE CODE SUIVANT" name="img">
+                            </div>
+                        </div>
+                    </div>
+               
+                    
+                    <div class="p-t-20">
+                        <button class="btn btn--radius btn--blue" (click)="openModal(template)" type="submit">Ajouter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template id="test" #template>
+    
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Add more</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      Are you sure !!
+    </div>
+    <div class="modal-action">
+      <button mat-button (click)="closeModal(template)" color="warn">Yes</button>
+      <button mat-button routerLink="/home" (click)="closeModal(template)"> No</button>
+    </div>
+
+  </ng-template>
+
